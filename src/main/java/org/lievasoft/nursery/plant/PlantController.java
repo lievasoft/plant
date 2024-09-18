@@ -1,5 +1,6 @@
 package org.lievasoft.nursery.plant;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ public class PlantController {
     private final PlantService plantService;
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody PlantCreateRequest request) {
+    public ResponseEntity<String> create(@RequestBody @Valid PlantCreateRequest request) {
         return ResponseEntity
                 .created(URI.create("/api/v1/plants"))
                 .body(plantService.create(request));
