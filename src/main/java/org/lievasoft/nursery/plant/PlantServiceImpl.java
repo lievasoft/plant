@@ -13,10 +13,10 @@ public class PlantServiceImpl implements PlantService {
     private final PlantRepository repository;
 
     @Override
-    public String create(final PlantCreateRequest request) {
+    public PlantCreateResponse create(final PlantCreateRequest request) {
         Plant plantMapped = mapper.toPlant(request);
         Plant plantPersisted = repository.save(plantMapped);
         log.info("Plant persisted with Id: {}", plantPersisted.getId());
-        return plantPersisted.getId();
+        return mapper.fromPlant(plantPersisted);
     }
 }

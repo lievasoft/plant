@@ -10,4 +10,8 @@ public class PlantMapper {
                 .commonName(request.commonName())
                 .build();
     }
+
+    public PlantCreateResponse fromPlant(final Plant plant) {
+        return new PlantCreateResponse(plant.getId(), plant.getCommonName());
+    }
 }

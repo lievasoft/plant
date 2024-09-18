@@ -1,10 +1,10 @@
 package org.lievasoft.nursery.plant;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
+
+import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,8 +16,9 @@ import org.hibernate.annotations.UuidGenerator;
 public class Plant {
 
     @Id
-    @UuidGenerator
-    private String id;
+    @GeneratedValue(strategy = SEQUENCE, generator = "plant_sequence")
+    @SequenceGenerator(name = "plant_sequence", sequenceName = "plant_sequence", allocationSize = 1)
+    private Long id;
 
     private String commonName;
 }

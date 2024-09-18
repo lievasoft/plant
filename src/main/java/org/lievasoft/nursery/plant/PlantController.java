@@ -18,7 +18,7 @@ public class PlantController {
     private final PlantService plantService;
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody @Valid PlantCreateRequest request) {
+    public ResponseEntity<PlantCreateResponse> create(@RequestBody @Valid PlantCreateRequest request) {
         return ResponseEntity
                 .created(URI.create("/api/v1/plants"))
                 .body(plantService.create(request));

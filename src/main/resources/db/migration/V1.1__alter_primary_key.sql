@@ -1,0 +1,11 @@
+CREATE SEQUENCE plant_sequence START WITH 1 INCREMENT BY 1;
+
+ALTER TABLE plants ADD COLUMN new_id BIGINT DEFAULT nextval('plant_sequence') NOT NULL;
+
+ALTER TABLE plants DROP CONSTRAINT IF EXISTS plants_pkey;
+
+ALTER TABLE plants DROP COLUMN IF EXISTS id;
+
+ALTER TABLE plants ADD CONSTRAINT plants_pkey PRIMARY KEY (new_id);
+
+ALTER TABLE plants RENAME COLUMN new_id TO id;
