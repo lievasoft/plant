@@ -1,8 +1,8 @@
-package org.lievasoft.nursery.plant;
+package org.lievasoft.nursery.plant.mapper;
 
-import org.lievasoft.nursery.plant.dtos.PlantCreateRequestDto;
-import org.lievasoft.nursery.plant.dtos.PlantCreateResponseDto;
-import org.lievasoft.nursery.plant.entities.Plant;
+import org.lievasoft.nursery.plant.dto.PlantCreateRequestDto;
+import org.lievasoft.nursery.plant.dto.PlantCreateResponseDto;
+import org.lievasoft.nursery.plant.domain.Plant;
 import org.springframework.stereotype.Service;
 
 @Service

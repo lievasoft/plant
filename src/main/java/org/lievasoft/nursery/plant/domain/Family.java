@@ -1,4 +1,4 @@
-package org.lievasoft.nursery.plant.entities;
+package org.lievasoft.nursery.plant.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

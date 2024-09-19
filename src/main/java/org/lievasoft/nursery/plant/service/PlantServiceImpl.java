@@ -1,11 +1,12 @@
-package org.lievasoft.nursery.plant.services;
+package org.lievasoft.nursery.plant.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.lievasoft.nursery.plant.*;
-import org.lievasoft.nursery.plant.dtos.PlantCreateRequestDto;
-import org.lievasoft.nursery.plant.dtos.PlantCreateResponseDto;
-import org.lievasoft.nursery.plant.entities.Plant;
+import org.lievasoft.nursery.plant.dto.PlantCreateRequestDto;
+import org.lievasoft.nursery.plant.dto.PlantCreateResponseDto;
+import org.lievasoft.nursery.plant.domain.Plant;
+import org.lievasoft.nursery.plant.mapper.PlantMapper;
+import org.lievasoft.nursery.plant.repository.PlantRepository;
 import org.springframework.stereotype.Service;
 
 @Service

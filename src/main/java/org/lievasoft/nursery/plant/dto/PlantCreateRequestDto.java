@@ -1,4 +1,4 @@
-package org.lievasoft.nursery.plant.dtos;
+package org.lievasoft.nursery.plant.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

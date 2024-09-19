@@ -1,9 +1,13 @@
-package org.lievasoft.nursery.plant.entities;
+package org.lievasoft.nursery.plant.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -12,6 +16,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Getter
 @Setter
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "plants")
 public class Plant {
@@ -27,4 +32,12 @@ public class Plant {
     @ManyToOne
     @JoinColumn(name = "family_id")
     private Family families;
+
+    @CreatedDate
+    @Column(updatable = false, nullable = false)
+    private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    @Column(insertable = false)
+    private LocalDateTime lastModifiedDate;
 }
