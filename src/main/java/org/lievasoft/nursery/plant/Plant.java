@@ -20,5 +20,10 @@ public class Plant {
     @SequenceGenerator(name = "plant_sequence", sequenceName = "plant_sequence", allocationSize = 1)
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String commonName;
+
+    @ManyToOne
+    @JoinColumn(name = "family_id")
+    private Family families;
 }
