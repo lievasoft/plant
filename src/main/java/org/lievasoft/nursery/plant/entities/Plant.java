@@ -1,8 +1,9 @@
-package org.lievasoft.nursery.plant;
+package org.lievasoft.nursery.plant.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.UuidGenerator;
+
+import java.math.BigDecimal;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 

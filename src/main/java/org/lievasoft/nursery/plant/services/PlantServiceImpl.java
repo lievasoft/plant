@@ -1,7 +1,11 @@
-package org.lievasoft.nursery.plant;
+package org.lievasoft.nursery.plant.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.lievasoft.nursery.plant.*;
+import org.lievasoft.nursery.plant.dtos.PlantCreateRequestDto;
+import org.lievasoft.nursery.plant.dtos.PlantCreateResponseDto;
+import org.lievasoft.nursery.plant.entities.Plant;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +17,7 @@ public class PlantServiceImpl implements PlantService {
     private final PlantRepository repository;
 
     @Override
-    public PlantCreateResponse create(final PlantCreateRequest request) {
+    public PlantCreateResponseDto create(final PlantCreateRequestDto request) {
         Plant plantMapped = mapper.toPlant(request);
         Plant plantPersisted = repository.save(plantMapped);
         log.info("Plant persisted with Id: {}", plantPersisted.getId());
