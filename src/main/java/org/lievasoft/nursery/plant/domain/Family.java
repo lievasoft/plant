@@ -20,7 +20,7 @@ public class Family {
     @Column(length = 100)
     private String id;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = false, unique = true)
     private String name;
 
     @OneToMany(mappedBy = "families")

@@ -1,6 +1,6 @@
 CREATE TABLE families (
     id varchar(100) NOT NULL,
-    name VARCHAR(100) NOT NULL,
+    name VARCHAR(100) UNIQUE NOT NULL,
     PRIMARY KEY (id)
 );
 
