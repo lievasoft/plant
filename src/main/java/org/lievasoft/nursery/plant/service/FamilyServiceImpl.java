@@ -10,6 +10,8 @@ import org.lievasoft.nursery.plant.mapper.FamilyMapper;
 import org.lievasoft.nursery.plant.repository.FamilyRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -30,5 +32,14 @@ public class FamilyServiceImpl implements FamilyService{
             log.info("family persisted with Id {}", familyPersisted.getId());
             return mapper.fromFamily(familyPersisted);
         }
+    }
+
+    @Override
+    public List<FamilyResponseDto> findAll() {
+        List<Family> familiesObtained = repository.findAll();
+        log.info("families obtained");
+        return familiesObtained.stream()
+                .map(mapper::fromFamily)
+                .toList();
     }
 }
