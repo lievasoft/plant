@@ -1,0 +1,16 @@
+services:
+  postgresql:
+    container_name: pg_sql
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: maria
+      POSTGRES_PASSWORD: maria17
+      POSTGRES_DB: plant
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+volumes:
+  postgres:
