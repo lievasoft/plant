@@ -2,7 +2,6 @@ package org.lievasoft.nursery.plant.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -31,7 +30,7 @@ public class Plant {
 
     @ManyToOne
     @JoinColumn(name = "family_id")
-    private Family families;
+    private Family family;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)

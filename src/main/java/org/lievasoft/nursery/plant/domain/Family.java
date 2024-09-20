@@ -23,6 +23,6 @@ public class Family {
     @Column(length = 100, nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "families")
+    @OneToMany(mappedBy = "family")
     private List<Plant> plants;
 }

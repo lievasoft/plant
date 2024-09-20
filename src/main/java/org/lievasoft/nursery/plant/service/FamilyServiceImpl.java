@@ -11,11 +11,12 @@ import org.lievasoft.nursery.plant.repository.FamilyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class FamilyServiceImpl implements FamilyService{
+public class FamilyServiceImpl implements FamilyService {
 
     private final FamilyMapper mapper;
     private final FamilyRepository repository;
