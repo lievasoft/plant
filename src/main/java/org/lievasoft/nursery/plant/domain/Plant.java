@@ -26,7 +26,7 @@ public class Plant {
     @SequenceGenerator(name = "plant_sequence", sequenceName = "plant_sequence", allocationSize = 1)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 100)
     private String commonName;
 
     @Column(length = 15, nullable = false)

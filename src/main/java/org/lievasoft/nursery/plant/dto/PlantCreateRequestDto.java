@@ -7,7 +7,6 @@ public record PlantCreateRequestDto(
         @NotBlank(message = "common name is required")
         String commonName,
         String familyId,
-        @NotBlank(message = "status is required")
         Status status
 ) {
 }
