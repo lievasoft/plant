@@ -2,6 +2,7 @@ package org.lievasoft.nursery.plant.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.lievasoft.nursery.plant.enums.Status;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -27,6 +28,10 @@ public class Plant {
 
     @Column(unique = true, nullable = false)
     private String commonName;
+
+    @Column(length = 15, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "family_id")
