@@ -1,13 +1,13 @@
-package org.lievasoft.nursery.plant.service;
+package org.lievasoft.nursery.service;
 
 import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.lievasoft.nursery.plant.domain.Family;
-import org.lievasoft.nursery.plant.dto.FamilyCreateRequestDto;
-import org.lievasoft.nursery.plant.dto.FamilyResponseDto;
-import org.lievasoft.nursery.plant.mapper.FamilyMapper;
-import org.lievasoft.nursery.plant.repository.FamilyRepository;
+import org.lievasoft.nursery.domain.Family;
+import org.lievasoft.nursery.dto.FamilyCreateRequestDto;
+import org.lievasoft.nursery.dto.FamilyResponseDto;
+import org.lievasoft.nursery.mapper.FamilyMapper;
+import org.lievasoft.nursery.repository.FamilyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

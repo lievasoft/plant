@@ -1,13 +1,15 @@
-package org.lievasoft.nursery.plant.domain;
+package org.lievasoft.nursery.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.lievasoft.nursery.plant.enums.Status;
+import org.lievasoft.nursery.enums.Classification;
+import org.lievasoft.nursery.enums.Status;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -32,6 +34,10 @@ public class Plant {
     @Column(length = 15, nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    @ElementCollection(targetClass = Classification.class, fetch = FetchType.LAZY)
+    @Enumerated(EnumType.STRING)
+    private Set<Classification> classifications;
 
     @ManyToOne
     @JoinColumn(name = "family_id")

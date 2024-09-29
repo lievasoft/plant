@@ -1,10 +1,10 @@
-package org.lievasoft.nursery.plant.controller;
+package org.lievasoft.nursery.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.lievasoft.nursery.plant.dto.PlantCreateRequestDto;
-import org.lievasoft.nursery.plant.dto.PlantCreateResponseDto;
-import org.lievasoft.nursery.plant.service.PlantService;
+import org.lievasoft.nursery.dto.PlantCreateRequestDto;
+import org.lievasoft.nursery.dto.PlantCreateResponseDto;
+import org.lievasoft.nursery.service.PlantService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

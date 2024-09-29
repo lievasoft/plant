@@ -1,4 +1,4 @@
-package org.lievasoft.nursery.plant.enums;
+package org.lievasoft.nursery.enums;
 
 public enum Status {
     AVAILABLE,

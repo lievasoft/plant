@@ -1,6 +1,6 @@
-package org.lievasoft.nursery.plant.dto;
+package org.lievasoft.nursery.dto;
 
-import org.lievasoft.nursery.plant.enums.Status;
+import org.lievasoft.nursery.enums.Status;
 
 public record PlantCreateResponseDto(
         Long id,

@@ -1,5 +1,25 @@
+
 spring:
-  config:
-    import: optional:configserver:http://localhost:8888
   application:
     name: plant-service
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:plant}
+    username: ${DB_USERNAME:maria}
+    password: ${DB_PASSWORD:maria17}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: off
+    show-sql: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    baseline-description: "init"
+    user: ${DB_USERNAME:maria}
+    password: ${DB_PASSWORD:maria17}
+server:
+  port: 8010

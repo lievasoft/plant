@@ -1,6 +1,6 @@
-package org.lievasoft.nursery.plant.repository;
+package org.lievasoft.nursery.repository;
 
-import org.lievasoft.nursery.plant.domain.Plant;
+import org.lievasoft.nursery.domain.Plant;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlantRepository extends JpaRepository<Plant, Long> {

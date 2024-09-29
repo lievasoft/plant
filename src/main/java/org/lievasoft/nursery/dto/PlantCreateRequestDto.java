@@ -1,7 +1,7 @@
-package org.lievasoft.nursery.plant.dto;
+package org.lievasoft.nursery.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import org.lievasoft.nursery.plant.enums.Status;
+import org.lievasoft.nursery.enums.Status;
 
 public record PlantCreateRequestDto(
         @NotBlank(message = "common name is required")
