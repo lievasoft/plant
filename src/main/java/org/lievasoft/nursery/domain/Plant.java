@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -43,11 +44,16 @@ public class Plant {
     @JoinColumn(name = "family_id")
     private Family family;
 
+    private String description;
+
+    @Column(precision = 4, scale = 2)
+    private BigDecimal price;
+
     @CreatedDate
     @Column(updatable = false, nullable = false)
-    private LocalDateTime createdDate;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
     @Column(insertable = false)
-    private LocalDateTime lastModifiedDate;
+    private LocalDateTime lastModifiedAt;
 }

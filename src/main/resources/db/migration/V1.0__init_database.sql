@@ -9,10 +9,12 @@ CREATE TABLE families (
 CREATE TABLE plants (
     id BIGINT DEFAULT nextval('plant_sequence') PRIMARY KEY,
     common_name VARCHAR(100),
-    family_id VARCHAR(100),
     status VARCHAR(15) NOT NULL,
-    created_date TIMESTAMP WITH TIME ZONE NOT NULL,
-    last_modified_date TIMESTAMP WITH TIME ZONE,
+    family_id VARCHAR(100),
+    description TEXT,
+    price NUMERIC(4, 2),
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    last_modified_at TIMESTAMP WITH TIME ZONE,
     FOREIGN KEY (family_id) REFERENCES families
 );
 
