@@ -12,7 +12,7 @@ CREATE TABLE plants (
     status VARCHAR(15) NOT NULL,
     family_id VARCHAR(100),
     description TEXT,
-    price NUMERIC(4, 2),
+    price NUMERIC(5, 2),
     created_at TIMESTAMP WITH TIME ZONE NOT NULL,
     last_modified_at TIMESTAMP WITH TIME ZONE,
     FOREIGN KEY (family_id) REFERENCES families

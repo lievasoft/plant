@@ -13,11 +13,24 @@ public class PlantMapper {
         return Plant.builder()
                 .commonName(request.commonName())
                 .status(request.status())
+                .classifications(request.classifications())
                 .family(family)
+                .description(request.description())
+                .price(request.price())
                 .build();
     }
 
     public PlantCreateResponseDto fromPlant(final Plant plant) {
-        return new PlantCreateResponseDto(plant.getId(), plant.getCommonName(), plant.getStatus());
+        String familyId = plant.getFamily() != null ? plant.getFamily().getId() : null;
+        return new PlantCreateResponseDto(
+                plant.getId(),
+                plant.getCommonName(),
+                plant.getStatus(),
+                plant.getClassifications(),
+                familyId,
+                plant.getPrice(),
+                plant.getCreatedAt(),
+                plant.getLastModifiedAt()
+        );
     }
 }

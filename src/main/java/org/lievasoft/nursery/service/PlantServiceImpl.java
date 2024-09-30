@@ -1,5 +1,6 @@
 package org.lievasoft.nursery.service;
 
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,12 @@ public class PlantServiceImpl implements PlantService {
 
     @Override
     public PlantCreateResponseDto create(final PlantCreateRequestDto request) {
+        if (repository.existsByCommonName(request.commonName())) {
+            String msg = String.format("Plant with common name '%s' already exists", request.commonName());
+            log.warn(msg);
+            throw new EntityExistsException(msg);
+        }
+
         Family familyObtained = null;
         if (request.familyId() != null) {
             familyObtained = familyRepository.findById(request.familyId())
