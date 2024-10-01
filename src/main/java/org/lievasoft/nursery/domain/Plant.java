@@ -45,8 +45,6 @@ public class Plant {
     @JoinColumn(name = "family_id")
     private Family family;
 
-    private String description;
-
     @Column(precision = 5, scale = 2)
     private BigDecimal price;
 
@@ -58,6 +56,7 @@ public class Plant {
     @Column(insertable = false)
     private LocalDateTime lastModifiedAt;
 
-    @OneToOne(mappedBy = "plant", cascade = ALL)
+    @OneToOne( cascade = ALL)
+    @JoinColumn(name = "information_id", nullable = false)
     private Information information;
 }

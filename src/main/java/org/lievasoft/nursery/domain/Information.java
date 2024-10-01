@@ -18,10 +18,7 @@ public class Information {
     @SequenceGenerator(name = "information_sequence", sequenceName = "information_sequence", allocationSize = 1)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "plant_id", nullable = false)
-    private Plant plant;
-
+    private String description;
     private String origin;
     private String size;
     private String flowering;

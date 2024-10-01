@@ -14,8 +14,16 @@ public record PlantCreateRequestDto(
         Status status,
         Set<Classification> classifications,
         String familyId,
-        String description,
         @Positive(message = "price must be positive")
-        BigDecimal price
+        BigDecimal price,
+        String description,
+        String origin,
+        String size,
+        String flowering,
+        String location,
+        String soil,
+        String fertilization,
+        String pruning,
+        String propagation
 ) {
 }
