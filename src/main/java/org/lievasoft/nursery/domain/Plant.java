@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @AllArgsConstructor
@@ -56,4 +57,7 @@ public class Plant {
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime lastModifiedAt;
+
+    @OneToOne(mappedBy = "plant", cascade = ALL)
+    private Information information;
 }
