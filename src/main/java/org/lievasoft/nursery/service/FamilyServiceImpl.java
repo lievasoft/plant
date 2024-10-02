@@ -1,6 +1,7 @@
 package org.lievasoft.nursery.service;
 
 import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.lievasoft.nursery.domain.Family;
@@ -39,5 +40,13 @@ public class FamilyServiceImpl implements FamilyService {
         return familiesObtained.stream()
                 .map(mapper::fromFamily)
                 .toList();
+    }
+
+    @Override
+    public Family findById(String id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        String.format("Family with Id: %s does not exists when we are creating a plant", id)
+                ));
     }
 }

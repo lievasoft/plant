@@ -61,10 +61,6 @@ public class Plant {
     @JoinColumn(name = "information_id", nullable = false)
     private Information information;
 
-    @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY, cascade = { PERSIST, REMOVE })
-    private final Set<Image> images = new HashSet<>();
-
-    public void addImage(Image image) {
-        images.add(image);
-    }
+    @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY, cascade = REMOVE)
+    private Set<Image> images;
 }

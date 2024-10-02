@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.nio.file.FileSystemNotFoundException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.HashMap;
@@ -53,6 +54,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException ex, HttpServletRequest request) {
+        log.error(ex.getMessage());
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(errorResponse(request.getServletPath(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(FileSystemNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleFileSystemNotFoundException(FileSystemNotFoundException ex, HttpServletRequest request) {
         log.error(ex.getMessage());
         return ResponseEntity
                 .status(BAD_REQUEST)
