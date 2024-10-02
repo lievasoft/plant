@@ -23,9 +23,7 @@ public class FamilyServiceImpl implements FamilyService {
     @Override
     public FamilyResponseDto create(final FamilyCreateRequestDto request) {
         if (repository.existsByName(request.name())) {
-            String msg = String.format("family with name '%s' already exists", request.name());
-            log.warn(msg);
-            throw new EntityExistsException(msg);
+            throw new EntityExistsException(String.format("family with name '%s' already exists", request.name()));
 
         } else {
             Family familyPersisted = repository.save(mapper.toFamily(request));

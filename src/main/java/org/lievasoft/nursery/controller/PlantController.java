@@ -6,10 +6,8 @@ import org.lievasoft.nursery.dto.PlantCreateRequestDto;
 import org.lievasoft.nursery.dto.PlantCreateResponseDto;
 import org.lievasoft.nursery.service.PlantService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
 
@@ -25,5 +23,11 @@ public class PlantController {
         return ResponseEntity
                 .created(URI.create("/api/v1/plants"))
                 .body(plantService.create(request));
+    }
+
+    @PostMapping(value = "/{plantId}/image", consumes = {"multipart/form-data"})
+    public ResponseEntity<Void> uploadImage(@PathVariable("plantId") Long plantId, @RequestPart("image") MultipartFile file) {
+        plantService.uploadImageToFileSystem(plantId, file);
+        return ResponseEntity.ok().build();
     }
 }

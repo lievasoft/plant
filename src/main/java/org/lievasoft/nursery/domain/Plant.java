@@ -10,9 +10,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
-import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.CascadeType.*;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @AllArgsConstructor
@@ -56,7 +57,14 @@ public class Plant {
     @Column(insertable = false)
     private LocalDateTime lastModifiedAt;
 
-    @OneToOne( cascade = ALL)
+    @OneToOne(cascade = { PERSIST, REMOVE })
     @JoinColumn(name = "information_id", nullable = false)
     private Information information;
+
+    @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY, cascade = { PERSIST, REMOVE })
+    private final Set<Image> images = new HashSet<>();
+
+    public void addImage(Image image) {
+        images.add(image);
+    }
 }

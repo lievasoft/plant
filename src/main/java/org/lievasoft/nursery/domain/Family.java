@@ -17,7 +17,7 @@ public class Family {
 
     @Id
     @UuidGenerator
-    @Column(length = 100)
+    @Column(length = 100, updatable = false)
     private String id;
 
     @Column(length = 100, nullable = false, unique = true)

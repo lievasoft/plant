@@ -38,3 +38,12 @@ CREATE TABLE plant_classifications (
     classifications VARCHAR(255),
     FOREIGN KEY (plant_id) REFERENCES plants (id)
 );
+
+CREATE TABLE images (
+    id VARCHAR(100) PRIMARY KEY,
+    plant_id BIGINT,
+    name VARCHAR(255),
+    type VARCHAR(255),
+    path VARCHAR(255),
+    FOREIGN KEY (plant_id) REFERENCES plants (id)
+);
