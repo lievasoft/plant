@@ -2,6 +2,7 @@ package org.lievasoft.nursery.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,6 +14,7 @@ import lombok.*;
 public class Image {
 
     @Id
+    @UuidGenerator
     @Column(length = 100, updatable = false)
     private String id;
 

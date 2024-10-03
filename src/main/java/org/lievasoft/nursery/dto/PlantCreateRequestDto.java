@@ -11,6 +11,7 @@ import java.util.Set;
 public record PlantCreateRequestDto(
         @NotBlank(message = "common name is required")
         String commonName,
+        String scientificName,
         Status status,
         Set<Classification> classifications,
         String familyId,

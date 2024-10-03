@@ -4,7 +4,7 @@ import org.lievasoft.nursery.domain.Family;
 import org.lievasoft.nursery.domain.Information;
 import org.lievasoft.nursery.domain.Plant;
 import org.lievasoft.nursery.dto.PlantCreateRequestDto;
-import org.lievasoft.nursery.dto.PlantCreateResponseDto;
+import org.lievasoft.nursery.dto.PlantResponseDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,6 +25,7 @@ public class PlantMapper {
 
         return Plant.builder()
                 .commonName(request.commonName())
+                .scientificName(request.scientificName())
                 .status(request.status())
                 .classifications(request.classifications())
                 .family(family)
@@ -33,11 +34,12 @@ public class PlantMapper {
                 .build();
     }
 
-    public PlantCreateResponseDto fromPlant(final Plant plant) {
+    public PlantResponseDto fromPlant(final Plant plant) {
         String familyId = plant.getFamily() != null ? plant.getFamily().getId() : null;
-        return new PlantCreateResponseDto(
+        return new PlantResponseDto(
                 plant.getId(),
                 plant.getCommonName(),
+                plant.getScientificName(),
                 plant.getStatus(),
                 plant.getClassifications(),
                 familyId,

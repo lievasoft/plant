@@ -2,6 +2,7 @@ package org.lievasoft.nursery.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.lievasoft.nursery.dto.CardResponseDto;
 import org.lievasoft.nursery.enums.Classification;
 import org.lievasoft.nursery.enums.Status;
 import org.springframework.data.annotation.CreatedDate;
@@ -16,6 +17,29 @@ import java.util.Set;
 import static jakarta.persistence.CascadeType.*;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
+@NamedNativeQuery(
+        name = "findAllPlantCardByPagination",
+        query = """
+            SELECT p.id, common_name, scientific_name, status
+            FROM plants p
+            ORDER BY p.common_name
+            LIMIT :limit OFFSET :offset
+        """,
+        resultSetMapping = "PlantCardMapping"
+)
+@SqlResultSetMapping(
+        name = "PlantCardMapping",
+        classes = @ConstructorResult(
+                targetClass = CardResponseDto.class,
+                columns = {
+                        @ColumnResult(name = "id", type = Long.class),
+                        @ColumnResult(name = "common_name", type = String.class),
+                        @ColumnResult(name = "scientific_name", type = String.class),
+                        @ColumnResult(name = "status", type = Status.class),
+                        @ColumnResult(name = "imageId", type = String.class),
+                }
+        )
+)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -33,6 +57,9 @@ public class Plant {
 
     @Column(unique = true, nullable = false, length = 100)
     private String commonName;
+
+    @Column(length = 100)
+    private String scientificName;
 
     @Column(length = 15, nullable = false)
     @Enumerated(EnumType.STRING)

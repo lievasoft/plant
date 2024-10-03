@@ -7,9 +7,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-public record PlantCreateResponseDto(
+public record PlantResponseDto(
         Long id,
         String commonName,
+        String scientificName,
         Status status,
         Set<Classification> classifications,
         String familyId,

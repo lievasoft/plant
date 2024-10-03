@@ -24,6 +24,7 @@ CREATE TABLE plants (
     id BIGINT DEFAULT nextval('plant_sequence') PRIMARY KEY,
     information_id BIGINT UNIQUE NOT NULL,
     common_name VARCHAR(100),
+    scientific_name VARCHAR(100),
     status VARCHAR(15) NOT NULL,
     family_id VARCHAR(100),
     price NUMERIC(5, 2),

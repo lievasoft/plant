@@ -9,9 +9,8 @@ import org.lievasoft.nursery.domain.Family;
 import org.lievasoft.nursery.domain.Image;
 import org.lievasoft.nursery.domain.Plant;
 import org.lievasoft.nursery.dto.PlantCreateRequestDto;
-import org.lievasoft.nursery.dto.PlantCreateResponseDto;
+import org.lievasoft.nursery.dto.PlantResponseDto;
 import org.lievasoft.nursery.mapper.PlantMapper;
-import org.lievasoft.nursery.repository.FamilyRepository;
 import org.lievasoft.nursery.repository.ImageRepository;
 import org.lievasoft.nursery.repository.PlantRepository;
 import org.springframework.core.io.Resource;
@@ -25,7 +24,6 @@ import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.UUID;
 
 @Service
 @Slf4j
@@ -40,7 +38,7 @@ public class PlantServiceImpl implements PlantService {
     private final ImageRepository imageRepository;
 
     @Override
-    public PlantCreateResponseDto create(final PlantCreateRequestDto request) {
+    public PlantResponseDto create(final PlantCreateRequestDto request) {
         if (plantJpaRepository.existsByCommonName(request.commonName())) {
             throw new EntityExistsException(String.format("Plant with common name '%s' already exists", request.commonName()));
         }

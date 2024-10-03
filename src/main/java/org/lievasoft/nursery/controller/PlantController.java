@@ -3,7 +3,7 @@ package org.lievasoft.nursery.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.lievasoft.nursery.dto.PlantCreateRequestDto;
-import org.lievasoft.nursery.dto.PlantCreateResponseDto;
+import org.lievasoft.nursery.dto.PlantResponseDto;
 import org.lievasoft.nursery.service.PlantService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -21,7 +21,7 @@ public class PlantController {
     private final PlantService plantService;
 
     @PostMapping
-    public ResponseEntity<PlantCreateResponseDto> create(@RequestBody @Valid PlantCreateRequestDto request) {
+    public ResponseEntity<PlantResponseDto> create(@RequestBody @Valid PlantCreateRequestDto request) {
         return ResponseEntity
                 .created(URI.create("/api/v1/plants"))
                 .body(plantService.create(request));
