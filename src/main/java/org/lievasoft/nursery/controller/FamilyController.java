@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.lievasoft.nursery.dto.FamilyCreateRequestDto;
 import org.lievasoft.nursery.dto.FamilyResponseDto;
 import org.lievasoft.nursery.service.FamilyService;
+import org.lievasoft.nursery.utils.ValidSet;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,13 @@ public class FamilyController {
         return ResponseEntity
                 .created(URI.create("/api/v1/families"))
                 .body(service.create(request));
+    }
+
+    @PostMapping("/batch")
+    public ResponseEntity<List<FamilyResponseDto>> createMany(@RequestBody @Valid ValidSet<FamilyCreateRequestDto> payload) {
+        return ResponseEntity
+                .created(URI.create("/api/v1/families/batch"))
+                .body(service.createMany(payload));
     }
 
     @GetMapping

@@ -9,9 +9,11 @@ import org.lievasoft.nursery.dto.FamilyCreateRequestDto;
 import org.lievasoft.nursery.dto.FamilyResponseDto;
 import org.lievasoft.nursery.mapper.FamilyMapper;
 import org.lievasoft.nursery.repository.FamilyRepository;
+import org.lievasoft.nursery.utils.ValidSet;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -48,5 +50,12 @@ public class FamilyServiceImpl implements FamilyService {
                 .orElseThrow(() -> new EntityNotFoundException(
                         String.format("Family with Id: %s does not exists when we are creating a plant", id)
                 ));
+    }
+
+    @Override
+    public List<FamilyResponseDto> createMany(final Set<FamilyCreateRequestDto> families) {
+        return families.stream()
+                .map(this::create)
+                .toList();
     }
 }

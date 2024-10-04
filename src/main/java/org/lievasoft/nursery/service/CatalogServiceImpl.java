@@ -20,11 +20,11 @@ public class CatalogServiceImpl implements CatalogService {
         int limit = pageable.getPageSize();
         int offset = pageable.getPageNumber() * limit;
 
-        List<PlantCardResponseDTO> plantsMapped =
-                plantJpaRepository.findAllPlantCards(limit, offset)
-                .stream()
-                .map(this::toPlantCardResponseDTO)
-                        .collect(Collectors.toCollection(ArrayList::new));
+//        List<PlantCardResponseDTO> plantsMapped =
+//                plantJpaRepository.findAllPlantCards(limit, offset)
+//                .stream()
+//                .map(this::toPlantCardResponseDTO)
+//                        .collect(Collectors.toCollection(ArrayList::new));
 
         return null;
     }

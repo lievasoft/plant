@@ -8,6 +8,6 @@ public interface PlantJpaRepository extends JpaRepository<Plant, Long> {
 
     boolean existsByCommonName(String commonName);
 
-    @Query(name = "findAllPlantCards", nativeQuery = true)
-    List<PlantCardDTO> findAllPlantCards(@Param("limit") int limit, @Param("offset") int offset);
+    /*@Query(name = "findAllPlantCards", nativeQuery = true)
+    List<PlantCardDTO> findAllPlantCards(@Param("limit") int limit, @Param("offset") int offset);*/
 }
