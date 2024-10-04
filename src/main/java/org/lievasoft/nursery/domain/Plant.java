@@ -17,13 +17,29 @@ import static jakarta.persistence.CascadeType.PERSIST;
 import static jakarta.persistence.CascadeType.REMOVE;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+@Entity
+@Table(name = "plants")
 @NamedNativeQuery(
         name = "findAllPlantCardByPagination",
         query = """
-            SELECT p.id, common_name, scientific_name, status
-            FROM plants p
-            ORDER BY p.common_name
-            LIMIT :limit OFFSET :offset
+            SELECT
+                plant.id AS id,
+                plant.common_name,
+                plant.status,
+                MIN(image.id) AS image_id
+            FROM plants plant
+            LEFT JOIN images image
+                ON plant.id = image.plant_id
+            GROUP BY
+                plant.id
+            LIMIT :limit
+            OFFSET :offset
         """,
         resultSetMapping = "PlantCardMapping"
 )
@@ -34,20 +50,11 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
                 columns = {
                         @ColumnResult(name = "id", type = Long.class),
                         @ColumnResult(name = "common_name", type = String.class),
-                        @ColumnResult(name = "scientific_name", type = String.class),
                         @ColumnResult(name = "status", type = Status.class),
-                        @ColumnResult(name = "imageId", type = String.class),
+                        @ColumnResult(name = "image_id", type = String.class),
                 }
         )
 )
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Builder
-@EntityListeners(AuditingEntityListener.class)
-@Entity
-@Table(name = "plants")
 public class Plant {
 
     @Id
@@ -91,3 +98,4 @@ public class Plant {
     @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY, cascade = REMOVE)
     private Set<Image> images;
 }
+
