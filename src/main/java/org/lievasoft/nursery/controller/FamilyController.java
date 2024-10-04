@@ -19,13 +19,6 @@ public class FamilyController {
 
     private final FamilyService service;
 
-    @PostMapping
-    public ResponseEntity<FamilyResponseDto> create(@RequestBody @Valid FamilyCreateRequestDto request) {
-        return ResponseEntity
-                .created(URI.create("/api/v1/families"))
-                .body(service.create(request));
-    }
-
     @PostMapping("/batch")
     public ResponseEntity<List<FamilyResponseDto>> createMany(@RequestBody @Valid ValidSet<FamilyCreateRequestDto> payload) {
         return ResponseEntity

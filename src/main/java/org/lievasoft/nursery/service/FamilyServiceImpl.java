@@ -24,18 +24,6 @@ public class FamilyServiceImpl implements FamilyService {
     private final FamilyRepository repository;
 
     @Override
-    public FamilyResponseDto create(final FamilyCreateRequestDto request) {
-        if (repository.existsByName(request.name())) {
-            throw new EntityExistsException(String.format("family with name '%s' already exists", request.name()));
-
-        } else {
-            Family familyPersisted = repository.save(mapper.toFamily(request));
-            log.info("family persisted with Id {}", familyPersisted.getId());
-            return mapper.fromFamily(familyPersisted);
-        }
-    }
-
-    @Override
     public List<FamilyResponseDto> findAll() {
         List<Family> familiesObtained = repository.findAll();
         log.info("families obtained");
@@ -57,5 +45,16 @@ public class FamilyServiceImpl implements FamilyService {
         return families.stream()
                 .map(this::create)
                 .toList();
+    }
+
+    private FamilyResponseDto create(final FamilyCreateRequestDto request) {
+        if (repository.existsByName(request.name())) {
+            throw new EntityExistsException(String.format("family with name '%s' already exists", request.name()));
+
+        } else {
+            Family familyPersisted = repository.save(mapper.toFamily(request));
+            log.info("family persisted with Id {}", familyPersisted.getId());
+            return mapper.fromFamily(familyPersisted);
+        }
     }
 }

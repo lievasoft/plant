@@ -9,8 +9,6 @@ import java.util.Set;
 
 public interface FamilyService {
 
-    FamilyResponseDto create(FamilyCreateRequestDto request);
-
     List<FamilyResponseDto> findAll();
 
     Family findById(String id);
