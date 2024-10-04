@@ -42,7 +42,7 @@ CREATE TABLE plant_classifications (
 
 CREATE TABLE images (
     id VARCHAR(100) PRIMARY KEY,
-    plant_id BIGINT,
+    plant_id BIGINT NOT NULL,
     name VARCHAR(255),
     type VARCHAR(255),
     path VARCHAR(255),

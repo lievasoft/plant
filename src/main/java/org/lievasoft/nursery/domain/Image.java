@@ -19,7 +19,7 @@ public class Image {
     private String id;
 
     @ManyToOne
-    @JoinColumn(name = "plant_id")
+    @JoinColumn(name = "plant_id", nullable = false)
     private Plant plant;
 
     private String name;

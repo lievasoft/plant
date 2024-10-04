@@ -11,8 +11,8 @@ import org.lievasoft.nursery.domain.Plant;
 import org.lievasoft.nursery.dto.PlantCreateRequestDto;
 import org.lievasoft.nursery.dto.PlantResponseDto;
 import org.lievasoft.nursery.mapper.PlantMapper;
-import org.lievasoft.nursery.repository.ImageRepository;
-import org.lievasoft.nursery.repository.PlantRepository;
+import org.lievasoft.nursery.repository.ImageJpaRepository;
+import org.lievasoft.nursery.repository.PlantJpaRepository;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -33,9 +33,9 @@ public class PlantServiceImpl implements PlantService {
     private static final String FOLDER_PATH = "/home/josmaria/nursery/images/";
 
     private final PlantMapper mapper;
-    private final PlantRepository plantJpaRepository;
+    private final PlantJpaRepository plantJpaRepository;
     private final FamilyService familyService;
-    private final ImageRepository imageRepository;
+    private final ImageJpaRepository imageRepository;
 
     @Override
     public PlantResponseDto create(final PlantCreateRequestDto request) {
