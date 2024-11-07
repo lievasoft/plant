@@ -1,7 +1,10 @@
 package org.lievasoft.nursery.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.lievasoft.nursery.dto.CardResponseDto;
+import org.lievasoft.nursery.domain.Plant;
+import org.lievasoft.nursery.dto.PlantCardDto;
+import org.lievasoft.nursery.dto.PlantFeaturesDto;
 import org.lievasoft.nursery.repository.PlantJpaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -17,10 +20,19 @@ public class CatalogServiceImpl implements CatalogService {
     private final PlantJpaRepository plantJpaRepository;
 
     @Override
-    public Page<CardResponseDto> obtainPlantCards(Pageable pageable) {
+    public Page<PlantCardDto> obtainPlantCards(Pageable pageable) {
         int limit = pageable.getPageSize();
         int offset = pageable.getPageNumber() * limit;
-        List<CardResponseDto> plantsMapped = plantJpaRepository.findAllPlantCardByPagination(limit, offset);
+        List<PlantCardDto> plantsMapped = plantJpaRepository.findAllPlantCardByPagination(limit, offset);
         return new PageImpl<>(plantsMapped, pageable, plantJpaRepository.count());
+    }
+
+    @Override
+    public PlantFeaturesDto obtainPlantFeatures(Long plantId) {
+        Plant plantObtained = plantJpaRepository.findById(plantId)
+                .orElseThrow(() -> new EntityNotFoundException("Plant with id " + plantId + " not found"));
+
+
+        return null;
     }
 }

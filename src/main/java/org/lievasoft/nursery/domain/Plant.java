@@ -2,7 +2,7 @@ package org.lievasoft.nursery.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.lievasoft.nursery.dto.CardResponseDto;
+import org.lievasoft.nursery.dto.PlantCardDto;
 import org.lievasoft.nursery.enums.Classification;
 import org.lievasoft.nursery.enums.Status;
 import org.springframework.data.annotation.CreatedDate;
@@ -46,7 +46,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @SqlResultSetMapping(
         name = "PlantCardMapping",
         classes = @ConstructorResult(
-                targetClass = CardResponseDto.class,
+                targetClass = PlantCardDto.class,
                 columns = {
                         @ColumnResult(name = "id", type = Long.class),
                         @ColumnResult(name = "common_name", type = String.class),
