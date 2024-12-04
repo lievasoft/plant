@@ -1,5 +1,0 @@
-ALTER TABLE plants
-    ADD COLUMN created_date TIMESTAMP WITH TIME ZONE NOT NULL;
-
-ALTER TABLE plants
-    ADD COLUMN last_modified_date TIMESTAMP WITH TIME ZONE;

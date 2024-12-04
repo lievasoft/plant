@@ -1,22 +1,31 @@
 package org.lievasoft.nursery.exceptions;
 
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.nio.file.FileSystemNotFoundException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.HashMap;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exp) {
+    public ResponseEntity<ErrorValidationResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         var errors = new HashMap<String, String>();
-        exp.getBindingResult().getAllErrors()
+        ex.getBindingResult().getAllErrors()
                 .forEach(error -> {
                     var fieldName = ((FieldError) error).getField();
                     var errorMessage = error.getDefaultMessage();
@@ -25,6 +34,41 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity
                 .status(BAD_REQUEST)
-                .body(new ErrorResponse(errors));
+                .body(new ErrorValidationResponse(errors));
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex, HttpServletRequest request) {
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(errorResponse(request.getServletPath(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(EntityExistsException.class)
+    public ResponseEntity<ErrorResponse> handleEntityExistsException(EntityExistsException ex, HttpServletRequest request) {
+        log.error(ex.getMessage());
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(errorResponse(request.getServletPath(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException ex, HttpServletRequest request) {
+        log.error(ex.getMessage());
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(errorResponse(request.getServletPath(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(FileSystemNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleFileSystemNotFoundException(FileSystemNotFoundException ex, HttpServletRequest request) {
+        log.error(ex.getMessage());
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(errorResponse(request.getServletPath(), ex.getMessage()));
+    }
+
+    private ErrorResponse errorResponse(String path, String reason) {
+        return new ErrorResponse(path, reason, LocalDateTime.now(ZoneId.of("America/La_Paz")));
     }
 }

@@ -1,10 +1,11 @@
-package org.lievasoft.nursery.plant.controller;
+package org.lievasoft.nursery.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.lievasoft.nursery.plant.dto.FamilyCreateRequestDto;
-import org.lievasoft.nursery.plant.dto.FamilyResponseDto;
-import org.lievasoft.nursery.plant.service.FamilyService;
+import org.lievasoft.nursery.dto.FamilyCreateRequestDto;
+import org.lievasoft.nursery.dto.FamilyResponseDto;
+import org.lievasoft.nursery.service.FamilyService;
+import org.lievasoft.nursery.utils.ValidSet;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,11 +19,11 @@ public class FamilyController {
 
     private final FamilyService service;
 
-    @PostMapping
-    public ResponseEntity<FamilyResponseDto> create(@RequestBody @Valid FamilyCreateRequestDto request) {
+    @PostMapping("/batch")
+    public ResponseEntity<List<FamilyResponseDto>> createMany(@RequestBody @Valid ValidSet<FamilyCreateRequestDto> payload) {
         return ResponseEntity
-                .created(URI.create("/api/v1/families"))
-                .body(service.create(request));
+                .created(URI.create("/api/v1/families/batch"))
+                .body(service.createMany(payload));
     }
 
     @GetMapping

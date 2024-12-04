@@ -1,8 +1,10 @@
 package org.lievasoft.nursery.exceptions;
 
-import java.util.Map;
+import java.time.LocalDateTime;
 
 public record ErrorResponse(
-        Map<String, String> errors
+        String path,
+        String reason,
+        LocalDateTime timestamp
 ) {
 }
